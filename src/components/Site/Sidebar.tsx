@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect } from "react";
 import { Route, Link, Switch } from "react-router-dom";
 import Lists from "../Fetch/Lists";
 import Monster from "../Fetch/Monster";
@@ -9,21 +9,21 @@ const baseUrl = "https://mhw-db.com";
 const log = console.log;
 
 
-type Props = {
-  getLists: () => void;
-  deleteList: (text: List) => void;
-  lists: List[];
-  //  monsters: Monster[]
-}
+// interface Props {
+//   getLists: () => void;
+//   deleteList: (text: List) => void;
+//   //lists: List[];
+//   //  monsters: Monster[]
+// }
 
-export class Sidebar extends Component {
+class Sidebar extends Component<{getLists: any, deleteList: any  }> {
 
-    constructor(props: Props){
+    constructor(props: any){
         super(props);
         this.state = {
             getList: props.getLists,
             deleteList: props.deleteList,
-            lists: props.lists
+            //lists: props.lists
         }
     }
 
