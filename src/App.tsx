@@ -12,6 +12,7 @@ class App extends Component<{},{token: any}> {
     super(props);
     this.updateToken = this.updateToken.bind(this);
     this.deleteToken = this.deleteToken.bind(this);
+    this.getToken = this.getToken.bind(this)
     this.state = { token: null };
   }
 
@@ -23,14 +24,18 @@ class App extends Component<{},{token: any}> {
     this.setState({ token: null });
   }
 
+  getToken(){
+    return this.state.token;
+  }
+
   render() {
     const isLoggedIn = this.state.token;
 
     let view;
 
     if (isLoggedIn) {
-      // view = <Display deleteToken={this.deleteToken} />;
-      view = <div>Worked</div>
+     view = <Display getToken={this.getToken} deleteToken={this.deleteToken} updateToken={this.updateToken}/>;
+      // view = <div>Worked</div>
     } else {
       view = <Auth updateToken={this.updateToken} />;
     }
