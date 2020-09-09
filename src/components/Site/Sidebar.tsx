@@ -1,43 +1,30 @@
-import React, { Component, useEffect } from "react";
+import React, { Component } from "react";
 import { Route, Link, Switch } from "react-router-dom";
 import Lists from "../Fetch/Lists";
-import Monster from "../Fetch/Monster";
+import Monsters from "../Fetch/Monsters";
 import Item from "../Fetch/Item";
-import List from "../Fetch/List";
+//import List from "../Fetch/List";
 
-const baseUrl = "https://mhw-db.com";
-const log = console.log;
+//class Sidebar extends Component<{ getLists: any; deleteList: any }>
+class Sidebar extends Component<{getToken: any;}> {
+  // constructor(props: any) {
+  //   super(props);
+  //   this.getToken = this.getToken.bind(this);
+  //   //this.getLists = this.getLists.bind(this);
+  //   //this.deleteList = this.deleteList.bind(this);
+  // }
 
+  // getLists() {
+  //   this.getLists();
+  // }
 
-// interface Props {
-//   getLists: () => void;
-//   deleteList: (text: List) => void;
-//   //lists: List[];
-//   //  monsters: Monster[]
-// }
+  // deleteList() {
+  //   this.deleteList();
+  // }
 
-class Sidebar extends Component<{getLists: any, deleteList: any  }> {
-
-    constructor(props: any){
-        super(props);
-        this.state = {
-            getList: props.getLists,
-            deleteList: props.deleteList,
-            //lists: props.lists
-        }
-    }
-
-  componentDidMount() {
-    useEffect(() => {
-      let url = `${baseUrl}/monsters`;
-      fetch(url)
-        .then((res) => res.json())
-        .then((data) => {
-          log(data);
-        })
-        .catch((err) => log(err));
-    }, []);
-  }
+  // getToken(){
+  //   return this.getToken;
+  // }
 
   render() {
     return (
@@ -57,15 +44,12 @@ class Sidebar extends Component<{getLists: any, deleteList: any  }> {
         </div>
         <div className="sidebar-route">
           <Switch>
-            <Route exact path="/list">
-              {/* <Lists
-                // getLists={}
-                // lists={lists}
-                // deleteList={deleteList}
-              /> */}
+            <Route exact path="/lists">
+              {/* <Lists getLists={this.props.getLists} deleteList={this.props.deleteList}/> */}
+              <Lists getToken={this.props.getToken}/>
             </Route>
             <Route exact path="/monster">
-              {/* <Monster monsters={monsters} /> */}
+              <Monsters />
             </Route>
             <Route exact path="/item">
               <Item />

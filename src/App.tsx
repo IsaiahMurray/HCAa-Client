@@ -12,7 +12,7 @@ class App extends Component<{},{token: any}> {
     super(props);
     this.updateToken = this.updateToken.bind(this);
     this.deleteToken = this.deleteToken.bind(this);
-    this.getToken = this.getToken.bind(this)
+    this.getToken = this.getToken.bind(this);
     this.state = { token: null };
   }
 
