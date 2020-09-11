@@ -3,6 +3,7 @@ import React from "react";
 //Styles
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import APIURL from "../../helpers/environment";
 
 const log = console.log;
 
@@ -27,8 +28,7 @@ class Login extends React.Component<AcceptedProps, UserData> {
   handleSubmit = (event: any) => {
     event.preventDefault();
     log("Submitted form");
-    //fetch("http://localhost:3000/user/login", {
-    fetch("http://hca-server.herokuapp.com/user/login", {
+    fetch(`${APIURL}/user/login`, {
       method: "POST",
       body: JSON.stringify({
         email: this.state.email,
@@ -40,9 +40,13 @@ class Login extends React.Component<AcceptedProps, UserData> {
     })
       .then((response) => response.json())
       .then((data) => {
-        log("Logged in!");
         this.props.updateToken(data.sessionToken);
-      });
+        log("Logged in!");
+      })
+      .catch(err => {
+        log(err);
+        alert("Weewoo! Who are you?! Identify yourself!!!");
+      })
   };
 
   render() {

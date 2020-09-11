@@ -1,13 +1,12 @@
-import {
-  FormControlLabel,
-  Checkbox,
-  TextField,
-  Button,
-} from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 import React from "react";
 import { Component } from "react";
+import APIURL from "../../helpers/environment";
 
-class CreateList extends Component<{getToken: any}, { title: string; description: string }> {
+class CreateList extends Component<
+  { getToken: any },
+  { title: string; description: string }
+> {
   constructor(props: any) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,10 +20,10 @@ class CreateList extends Component<{getToken: any}, { title: string; description
     event.preventDefault();
     let requestHeaders: any = {
       "Content-Type": "application/json",
-      "Authorization": this.props.getToken(),
+      Authorization: this.props.getToken(),
     };
 
-    fetch("http://hca-server.herokuapp.com/list/create", {
+    fetch(`${APIURL}/list/create`, {
       method: "POST",
       body: JSON.stringify({
         title: this.state.title,
@@ -32,22 +31,20 @@ class CreateList extends Component<{getToken: any}, { title: string; description
       }),
       headers: requestHeaders,
     })
-    .then((res) => res.json())
-    .then((json) => {
-      console.log(json);
-      alert("Your list has been created!")
-    });
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        alert("Your list has been created!");
+      });
   }
 
-  componentDidMount(){
-
-  }
+  componentDidMount() {}
 
   render() {
     return (
       <div id="create-list">
         <form id="create-list" onSubmit={this.handleSubmit}>
-        <h2 id="login-signup-header">Create New List</h2>
+          <h2 id="login-signup-header">Create New List</h2>
           <TextField
             variant="outlined"
             margin="normal"

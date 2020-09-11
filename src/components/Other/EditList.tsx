@@ -1,16 +1,15 @@
 import { TextField, Button } from "@material-ui/core";
 import React from "react";
 import { Component } from "react";
+import APIURL from "../../helpers/environment";
 
-
-
-class EditList extends Component<{ getToken: any, listId: number | null}, {}> {
+class EditList extends Component<{ getToken: any; listId: number | null }, {}> {
   constructor(props: any) {
     super(props);
     this.setDescription = this.setDescription.bind(this);
     this.setTitle = this.setTitle.bind(this);
     this.state = {
-        listId: this.props.listId
+      listId: this.props.listId,
     };
   }
 
@@ -19,7 +18,7 @@ class EditList extends Component<{ getToken: any, listId: number | null}, {}> {
       "Content-Type": "application/json",
       Authorization: this.props.getToken(),
     };
-    fetch(`http://hca-server.herokuapp.com/list/update/${this.props.listId}`, {
+    fetch(`${APIURL}/list/update/${this.props.listId}`, {
       method: "GET",
       headers: requestHeaders,
     })
@@ -29,13 +28,13 @@ class EditList extends Component<{ getToken: any, listId: number | null}, {}> {
       });
   }
 
-  setTitle(listTitle: string){
-      this.setState({title: listTitle})
+  setTitle(listTitle: string) {
+    this.setState({ title: listTitle });
   }
 
-  setDescription(listDescription: string){
-    this.setState({description: listDescription})
-}
+  setDescription(listDescription: string) {
+    this.setState({ description: listDescription });
+  }
 
   handleSubmit(id: number) {}
 

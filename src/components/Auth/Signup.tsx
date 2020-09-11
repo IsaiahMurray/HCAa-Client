@@ -1,6 +1,7 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import APIURL from "../../helpers/environment";
 const log = console.log;
 
 interface UserData {
@@ -23,8 +24,7 @@ class Signup extends React.Component<AcceptedProps, UserData> {
 
   handleSubmit = (event: any) => {
     event.preventDefault();
-    //fetch("http://localhost:3000/user/create", {
-    fetch("http://hca-server.herokuapp.com/user/create", {
+    fetch(`${APIURL}/user/create`, {
       method: "POST",
       body: JSON.stringify({
         email: this.state.email,

@@ -3,6 +3,7 @@ import "./App.css";
 import Footer from "./components/Site/Footer";
 import Auth from "../src/components/Auth/Auth";
 import Display from "./components/Site/Display";
+import APIURL from './helpers/environment';
 
 class App extends Component<{}, { token: any }> {
   constructor(props: any) {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Modal from "react-modal";
 import { Button, TextField } from "@material-ui/core";
+import APIURL from "../../helpers/environment";
 
 interface Data {
   lists: any;
@@ -109,7 +110,7 @@ class Lists extends Component<{ getToken: any }, Data> {
       Authorization: this.props.getToken(),
     };
     fetch(
-      `http://hca-server.herokuapp.com/list/update/${this.state.activeList.id}`,
+      `${APIURL}/list/update/${this.state.activeList.id}`,
       {
         method: "PUT",
         body: JSON.stringify({
