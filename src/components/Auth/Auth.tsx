@@ -18,7 +18,7 @@ class Auth extends React.Component<AcceptedProps, LoginCheck> {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
-      login: true
+      login: true,
     };
   }
 
@@ -34,18 +34,17 @@ class Auth extends React.Component<AcceptedProps, LoginCheck> {
   signupFields = () =>
     !this.state.login ? (
       <Grid id="login-signup" item xs={12} sm={6}>
-        <h2>{this.state.login ? "Login" : "Signup"}</h2>
         <Signup updateToken={this.props.updateToken} />
       </Grid>
     ) : (
       <Grid id="login-signup" item xs={12} sm={6} className="login-col">
-        <h2>{this.state.login ? "Login" : "Signup"}</h2>
         <Login updateToken={this.props.updateToken} />
       </Grid>
     );
   render() {
     return (
-      <Container className="auth-container">
+      <div className="auth-container">
+        <h1 id="hca">Hunter's Companion</h1>
         <Grid
           id="login-signup-grid"
           className="auth-grid"
@@ -57,10 +56,14 @@ class Auth extends React.Component<AcceptedProps, LoginCheck> {
           {this.signupFields()}
           <br />
         </Grid>
-        <Button id="toggle-button" onClick={this.loginToggle}>
-          {!this.state.login ? "Login" : "Signup"}
-        </Button>
-      </Container>
+        <div>
+          <div id="button-color-wrap">
+            <Button id="toggle-button" onClick={this.loginToggle}>
+              {!this.state.login ? "Login here!" : "Signup here!"}
+            </Button>
+          </div>
+        </div>
+      </div>
     );
   }
 }

@@ -3,29 +3,11 @@ import { Route, Link, Switch } from "react-router-dom";
 import Lists from "../Fetch/Lists";
 import Monsters from "../Fetch/Monsters";
 import Item from "../Fetch/Item";
-//import List from "../Fetch/List";
+import CreateList from '../Other/CreateList';
 
-//class Sidebar extends Component<{ getLists: any; deleteList: any }>
+
 class Sidebar extends Component<{getToken: any;}> {
-  // constructor(props: any) {
-  //   super(props);
-  //   this.getToken = this.getToken.bind(this);
-  //   //this.getLists = this.getLists.bind(this);
-  //   //this.deleteList = this.deleteList.bind(this);
-  // }
-
-  // getLists() {
-  //   this.getLists();
-  // }
-
-  // deleteList() {
-  //   this.deleteList();
-  // }
-
-  // getToken(){
-  //   return this.getToken;
-  // }
-
+  
   render() {
     return (
       <div className="sidebar">
@@ -40,12 +22,14 @@ class Sidebar extends Component<{getToken: any;}> {
             <li>
               <Link to="/item">Items</Link>
             </li>
+            <li>
+              <Link to="/create-list">Create List</Link>
+            </li>
           </ul>
         </div>
         <div className="sidebar-route">
           <Switch>
             <Route exact path="/lists">
-              {/* <Lists getLists={this.props.getLists} deleteList={this.props.deleteList}/> */}
               <Lists getToken={this.props.getToken}/>
             </Route>
             <Route exact path="/monster">
@@ -53,6 +37,9 @@ class Sidebar extends Component<{getToken: any;}> {
             </Route>
             <Route exact path="/item">
               <Item />
+            </Route>
+            <Route exact path="/create-list">
+              <CreateList getToken={this.props.getToken}/>
             </Route>
           </Switch>
         </div>

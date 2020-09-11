@@ -15,17 +15,46 @@ interface Task{
 }
 
 interface Monster{
-    id: number,
+    id: number | null,
     name: string,
     type: string,
     species: string,
     description: string,
     elements: string[],
-    ailments: string[],
+    ailments: Ailments[],
     locations: Locations[],
     resistance: MonsterResistance[],
     weaknesses: MonsterWeakness[],
     rewards: MonsterReward[]
+}
+interface Ailments{
+    id: number,
+    name: string,
+    description: string,
+    recovery: Recovery,
+    protection: Protection
+}
+
+interface Recovery {
+    actions: RecoveryAction[],
+    items: Item[]
+}
+interface Protection{
+    items: Item[],
+    skills: Skill[]
+}
+
+interface RecoveryAction{
+    items: Item[],
+    skills: Skill[]
+}
+
+interface Skill{
+    id: number,
+    slug: string,
+    name: string,
+    description: string,
+    ranks: SkillRank[]
 }
 
 interface Locations{
@@ -66,4 +95,8 @@ interface Locations{
      rarity: number,
      carryLimit: number,
      value: number
+ }
+
+ interface ElementType{
+     name: string
  }

@@ -2,9 +2,9 @@ import React from 'react';
 
 function Footer(){
     return(
-        <div>
-             <h1>Footer Component</h1>
-        </div>
+        <footer>
+             <p id="hca-footer">© 2020 Hunter's Companion App</p>
+        </footer>
     )
 }
 
