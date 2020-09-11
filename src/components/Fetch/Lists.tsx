@@ -16,7 +16,6 @@ interface ActiveList {
 }
 
 class Lists extends Component<{ getToken: any }, Data> {
-  // { lists: any; listId: null | number; modalIsOpen: boolean, activeList: any }
   constructor(props: any) {
     super(props);
     this.deleteList = this.deleteList.bind(this);

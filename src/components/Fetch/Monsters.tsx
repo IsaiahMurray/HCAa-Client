@@ -1,26 +1,8 @@
 import { Button } from "@material-ui/core";
 import React, { Component } from "react";
 import Modal from "react-modal";
-import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import Radio from "@material-ui/core/Radio";
 import Paper from "@material-ui/core/Paper";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    height: 140,
-    width: 100,
-  },
-  control: {
-    padding: theme.spacing(2),
-  },
-}));
 
 interface Data {
   modalIsOpen: boolean;
@@ -47,7 +29,7 @@ class Monsters extends Component<{}, Data> {
         elements: [],
         ailments: [],
         locations: [],
-        resistance: [],
+        resistances: [],
         weaknesses: [],
         rewards: [],
       },
@@ -105,22 +87,81 @@ class Monsters extends Component<{}, Data> {
 
         <Modal isOpen={this.state.modalIsOpen}>
           <h1>{this.state.activeMonster.name}</h1>
-          
-          <h3>Species: {this.state.activeMonster.species}</h3>
-          
-          <h3>Type: {this.state.activeMonster.type}</h3>
-          
-          <p>Description: {this.state.activeMonster.description}</p>
-          
-          <p>Elements: {this.state.activeMonster.elements.map((element: string, index: number) => {
-            return(<ul><li>{element}</li></ul>)
-          })}</p>
 
-          <p>Ailment: {this.state.activeMonster.ailments.map((ailment: Ailments, index: number) => {
-            return(<ul><li>{ailment.name}</li></ul>)
-          })}</p>
-         
-          <p>{this.state.activeMonster.type}</p>
+          <h3>Species: {this.state.activeMonster.species}</h3>
+
+          <h3>Type: {this.state.activeMonster.type}</h3>
+
+          <p>Description: {this.state.activeMonster.description}</p>
+
+          <p>
+            Elements:{" "}
+            {this.state.activeMonster.elements.map(
+              (element: string, index: number) => {
+                return (
+                  <ul>
+                    <li>{element}</li>
+                  </ul>
+                );
+              }
+            )}
+          </p>
+
+          <p>
+            Ailment:{" "}
+            {this.state.activeMonster.ailments.map(
+              (ailment: Ailments, index: number) => {
+                return (
+                  <ul>
+                    <li>{ailment.name}</li>
+                  </ul>
+                );
+              }
+            )}
+          </p>
+
+          <p>
+            Resistances:{" "}
+            {this.state.activeMonster.resistances.map(
+              (resistance: MonsterResistance, index: number) => {
+                return (
+                  <ul>
+                    <li>{resistance.element}</li>
+                  </ul>
+                );
+              }
+            )}
+          </p>
+
+          <p>
+            Weaknesses:{" "}
+            {this.state.activeMonster.weaknesses.map(
+              (weakness: MonsterWeakness, index: number) => {
+                return (
+                  <ul>
+                    <li>
+                      {weakness.element} ={">"} {weakness.stars}/5
+                    </li>
+                  </ul>
+                );
+              }
+            )}
+          </p>
+
+          <p>
+            Rewards:{" "}
+            {this.state.activeMonster.rewards.map(
+              (reward: MonsterReward, index: number) => {
+                return (
+                  <ul>
+                    <li>
+                      {reward.item} ={">"}{" "}
+                    </li>
+                  </ul>
+                );
+              }
+            )}
+          </p>
           <Button onClick={() => this.closeModal()}>Exit</Button>
         </Modal>
       </div>

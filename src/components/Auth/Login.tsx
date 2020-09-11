@@ -40,7 +40,7 @@ class Login extends React.Component<AcceptedProps, UserData> {
     })
       .then((response) => response.json())
       .then((data) => {
-        log("data: ", data);
+        log("Logged in!");
         this.props.updateToken(data.sessionToken);
       });
   };

@@ -19,9 +19,9 @@ class Sidebar extends Component<{getToken: any;}> {
             <li>
               <Link to="/monster">Monsters</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/item">Items</Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/create-list">Create List</Link>
             </li>

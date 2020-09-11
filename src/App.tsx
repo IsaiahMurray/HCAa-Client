@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import "./App.css";
-// import { BrowserRouter as Router } from "react-router-dom";
-// import Navbar from "./components/Site/Navbar";
 import Footer from "./components/Site/Footer";
-// import Sidebar from "./components/Site/Sidebar";
 import Auth from "../src/components/Auth/Auth";
 import Display from "./components/Site/Display";
 
-class App extends Component<{},{token: any}> {
+class App extends Component<{}, { token: any }> {
   constructor(props: any) {
     super(props);
     this.updateToken = this.updateToken.bind(this);
@@ -24,7 +21,7 @@ class App extends Component<{},{token: any}> {
     this.setState({ token: null });
   }
 
-  getToken(){
+  getToken() {
     return this.state.token;
   }
 
@@ -34,8 +31,13 @@ class App extends Component<{},{token: any}> {
     let view;
 
     if (isLoggedIn) {
-     view = <Display getToken={this.getToken} deleteToken={this.deleteToken} updateToken={this.updateToken}/>;
-      // view = <div>Worked</div>
+      view = (
+        <Display
+          getToken={this.getToken}
+          deleteToken={this.deleteToken}
+          updateToken={this.updateToken}
+        />
+      );
     } else {
       view = <Auth updateToken={this.updateToken} />;
     }
@@ -50,34 +52,5 @@ class App extends Component<{},{token: any}> {
     );
   }
 }
-
-// export const App = () => {
-//   const [token, setToken] = useState(localStorage.getItem("token"));
-//   const updateToken = (token: string) => {
-//     localStorage.setItem("token", token);
-//     setToken(token);
-//   };
-
-//   const deleteToken = () => {
-//     localStorage.removeItem("token");
-//     setToken("");
-//   };
-
-//   return (
-//     <div className="App">
-//       {token ? (
-//         <div>
-//           <Display deleteToken={deleteToken}/>
-//           <Footer />
-//         </div>
-//       ) : (
-//         <div>
-//           <Auth updateToken={updateToken} />
-//           <Footer />
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
 
 export default App;

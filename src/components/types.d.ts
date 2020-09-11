@@ -23,7 +23,7 @@ interface Monster{
     elements: string[],
     ailments: Ailments[],
     locations: Locations[],
-    resistance: MonsterResistance[],
+    resistances: MonsterResistance[],
     weaknesses: MonsterWeakness[],
     rewards: MonsterReward[]
 }

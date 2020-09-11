@@ -54,7 +54,6 @@ class EditList extends Component<{ getToken: any, listId: number | null}, {}> {
               this.setState({ ...this.state, title: e.target.value })
             }
             name="title"
-            // value={this.props.title}
             autoFocus
           />
           <br />
@@ -69,7 +68,6 @@ class EditList extends Component<{ getToken: any, listId: number | null}, {}> {
               this.setState({ ...this.state, description: e.target.value })
             }
             name="description"
-            //value={this.props.description}
           />
           <br />
           <Button
