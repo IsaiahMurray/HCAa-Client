@@ -13,17 +13,17 @@ class Sidebar extends Component<{getToken: any;}> {
       <div className="sidebar">
         <div className="sidebar-list-styling">
           <ul className="sidebar-list list-unstyled">
-            <li>
-              <Link to="/lists">Lists</Link>
+            <li className="sidebar-li">
+              <Link className="link" to="/lists">Lists</Link>
             </li>
-            <li>
-              <Link to="/monster">Monsters</Link>
+            <li className="sidebar-li">
+              <Link className="link" to="/monster">Monsters</Link>
             </li>
-            {/* <li>
-              <Link to="/item">Items</Link>
+            {/* <li className="sidebar-li">
+              <Link className="link" to="/item">Items</Link>
             </li> */}
-            <li>
-              <Link to="/create-list">Create List</Link>
+            <li className="sidebar-li">
+              <Link className="link" to="/create-list">Create List</Link>
             </li>
           </ul>
         </div>

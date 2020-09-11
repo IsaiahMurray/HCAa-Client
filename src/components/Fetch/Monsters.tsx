@@ -162,6 +162,7 @@ class Monsters extends Component<{}, Data> {
               }
             )}
           </p>
+          
           <Button onClick={() => this.closeModal()}>Exit</Button>
         </Modal>
       </div>

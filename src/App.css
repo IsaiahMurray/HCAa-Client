@@ -209,3 +209,12 @@ nav > div:first-child{
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+
+.sidebar-li{
+  background: linear-gradient(45deg, red, purple);
+  height: 50px;
+  border: solid 5px black;
+  margin: 15px;
+  padding-top: 20px;
+}
+
