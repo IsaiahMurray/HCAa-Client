@@ -5,17 +5,17 @@
 /* body */
 body {
   padding: 15px;
-  background: #222;
+  background: white;
   font: Belleza;
   height: 100vh;
 }
 
 /* footer */
 footer {
-  color: white;
+  color: black;
   height: 50px;
   margin: auto;
-  background-color: #222;
+  background-color: white;
 }
 
 footer  p {
@@ -103,14 +103,6 @@ ul {
 
 /*-----Auth-----*/
 
-form{
-  border: 5px solid;
-  border-image-source: linear-gradient(45deg, red, purple);
-  border-image-slice: 1;
-  border-radius: 25px;
-  height: 400px;
-  width: 100%;
-}
 
 #inner-auth-div{
   text-align: center;

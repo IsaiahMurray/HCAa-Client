@@ -1,9 +1,8 @@
 import React from "react";
-
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Signup from "./Signup";
 import Login from "./Login";
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
+import { Grid, Button, Paper } from "@material-ui/core/";
 
 interface LoginCheck {
   login: boolean;
@@ -19,6 +18,7 @@ class Auth extends React.Component<AcceptedProps, LoginCheck> {
     this.state = {
       login: true,
     };
+    this.loginToggle = this.loginToggle.bind(this);
   }
 
   loginToggle = (event: any) => {
@@ -33,11 +33,17 @@ class Auth extends React.Component<AcceptedProps, LoginCheck> {
   signupFields = () =>
     !this.state.login ? (
       <Grid id="login-signup" item xs={12} sm={6}>
-        <Signup updateToken={this.props.updateToken} />
+        <Paper className={""}>
+          <Signup loginToggle={this.loginToggle} updateToken={this.props.updateToken} />
+          <br/>
+        </Paper>
       </Grid>
     ) : (
       <Grid id="login-signup" item xs={12} sm={6} className="login-col">
-        <Login updateToken={this.props.updateToken} />
+        <Paper className={""}>
+          <Login loginToggle={this.loginToggle} updateToken={this.props.updateToken} />
+          <br/>
+        </Paper>
       </Grid>
     );
   render() {
@@ -55,13 +61,6 @@ class Auth extends React.Component<AcceptedProps, LoginCheck> {
           {this.signupFields()}
           <br />
         </Grid>
-        <div>
-          <div id="button-color-wrap">
-            <Button id="toggle-button" onClick={this.loginToggle}>
-              {!this.state.login ? "Login here!" : "Signup here!"}
-            </Button>
-          </div>
-        </div>
       </div>
     );
   }

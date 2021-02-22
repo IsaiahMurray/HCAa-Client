@@ -5,8 +5,8 @@
 interface List{
     title: string,
     description: string,
-    tasks?: [Task],
-    id?: number
+    tasks?: Task[],
+    id: number
 }
 interface Task{
     description: string,

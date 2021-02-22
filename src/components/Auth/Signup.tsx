@@ -11,6 +11,7 @@ interface UserData {
 
 interface AcceptedProps {
   updateToken: (token: string) => void;
+  loginToggle: (event: any) => void;
 }
 
 class Signup extends React.Component<AcceptedProps, UserData> {
@@ -79,6 +80,10 @@ class Signup extends React.Component<AcceptedProps, UserData> {
           <Button id="login-signup-button" type="submit">
             Sign Up
           </Button>
+          <br />
+          <br/>
+          <Button onClick={this.props.loginToggle}>Login here!</Button>
+          <br/>
         </form>
       </div>
     );

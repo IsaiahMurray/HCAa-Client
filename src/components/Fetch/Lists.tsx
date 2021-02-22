@@ -75,11 +75,11 @@ class Lists extends Component<{ getToken: any }, Data> {
     this.renderLists();
   }
 
-  setListArray(listResult: any) {
+  setListArray(listResult: List) {
     this.setState({ lists: listResult });
   }
 
-  openModal(list: any) {
+  openModal(list: List) {
     this.setState({ modalIsOpen: true });
     this.setState({ activeList: list });
   }
