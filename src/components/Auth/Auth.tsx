@@ -1,8 +1,7 @@
 import React from "react";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Signup from "./Signup";
 import Login from "./Login";
-import { Grid, Button, Paper } from "@material-ui/core/";
+import { Grid, Paper } from "@material-ui/core/";
 
 interface LoginCheck {
   login: boolean;
