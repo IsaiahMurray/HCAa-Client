@@ -2,16 +2,16 @@ import React, { Component } from "react";
 
 
 
-class Item extends Component<{},{}> {
+class Monster extends Component<{},{}> {
     constructor(props: any){
     super(props);
     this.state = {};
     }
     redner(){
         return(
-            <div>Indvidual Item Component</div>
+            <div>Monster Component</div>
         )
     }
 }
 
-export default Item;
+export default Monster;

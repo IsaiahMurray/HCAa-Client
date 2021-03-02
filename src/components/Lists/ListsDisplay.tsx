@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Modal from "react-modal";
 import { Button, TextField } from "@material-ui/core";
 import APIURL from "../../helpers/environment";
-import ListItem from "./ListItem";
+import ListItem from "./List";
 
 interface Data {
   lists: any;

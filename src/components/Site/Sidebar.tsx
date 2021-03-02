@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Route, Link, Switch } from "react-router-dom";
 import Lists from "../Lists/ListsDisplay";
-import Monsters from "../Monster/Monsters";
-import Item from "../Items/Item";
+import Monsters from "../Monster/MonsterDisplay";
+import Item from "../Items/ItemDisplay";
 import CreateList from "../Lists/CreateList";
 import List from "@material-ui/core/List";
 import ListItem, { ListItemProps } from "@material-ui/core/ListItem";
