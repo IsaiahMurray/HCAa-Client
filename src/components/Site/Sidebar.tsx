@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import { Route, Link, Switch } from "react-router-dom";
-import Lists from "../Fetch/Lists";
-import Monsters from "../Fetch/Monsters";
-import Item from "../Fetch/Item";
-import CreateList from "../Other/CreateList";
-import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
+import Lists from "../Lists/ListsDisplay";
+import Monsters from "../Monster/Monsters";
+import Item from "../Items/Item";
+import CreateList from "../Lists/CreateList";
 import List from "@material-ui/core/List";
 import ListItem, { ListItemProps } from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
 import Divider from "@material-ui/core/Divider";
 
 interface AcceptedProps {
@@ -20,6 +17,9 @@ class Sidebar extends Component<AcceptedProps> {
     super(props);
     this.state = {};
   }
+
+
+
 
   render() {
     return (
