@@ -7,6 +7,12 @@ import CreateList from "../Lists/CreateList";
 import List from "@material-ui/core/List";
 import ListItem, { ListItemProps } from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
+import {
+  Navbar,
+  Nav,
+  Button,
+  Form,
+} from "react-bootstrap";
 
 interface AcceptedProps {
   getToken: any;
@@ -18,62 +24,39 @@ class Sidebar extends Component<AcceptedProps> {
     this.state = {};
   }
 
-
-
-
   render() {
     return (
       <div>
-        <List component="nav" aria-label="main mailbox folders">
-          <ListItem>
-            <Link className="link" to="/lists">
-              Lists
-            </Link>
-          </ListItem>
-          <Divider />
-          <ListItem>
-            <Link className="link" to="/monsters">
-              Monsters
-            </Link>
-          </ListItem>
-          <Divider />
-          <ListItem>
-            <Link className="link" to="/items">
-              Items
-            </Link>
-          </ListItem>
-          <Divider />
-          <ListItem>
-            <Link className="link" to="/create-list">
-              Create List
-            </Link>
-          </ListItem>
-          <Divider />
-        </List>
-
-        <div className="sidebar">
-          <div className="sidebar-list-styling">
-            <ul className="sidebar-list list-unstyled">
-              <li className="sidebar-li">
+        <Navbar bg="light" expand="lg">
+          <Navbar.Brand href="#home">Hunter's Companion</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link>
                 <Link className="link" to="/lists">
                   Lists
                 </Link>
-              </li>
-              <li className="sidebar-li">
+              </Nav.Link>
+
+              <Nav.Link>
                 <Link className="link" to="/monster">
                   Monsters
                 </Link>
-              </li>
-              {/* <li className="sidebar-li">
-              <Link className="link" to="/item">Items</Link>
-            </li> */}
-              <li className="sidebar-li">
-                <Link className="link" to="/create-list">
-                  Create List
+              </Nav.Link>
+
+              <Nav.Link>
+                <Link className="link" to="/items">
+                  Items
                 </Link>
-              </li>
-            </ul>
-          </div>
+              </Nav.Link>
+            </Nav>
+            <Form inline>
+              <Button variant="outline-success">Soon to be logout</Button>
+            </Form>
+          </Navbar.Collapse>
+        </Navbar>
+
+        <div className="sidebar">
           <div className="sidebar-route">
             <Switch>
               <Route exact path="/lists">

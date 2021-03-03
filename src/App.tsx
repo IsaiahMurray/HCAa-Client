@@ -3,6 +3,7 @@ import "./App.css";
 import Footer from "./components/Site/Footer";
 import Auth from "../src/components/Auth/Auth";
 import Display from "./components/Site/Display";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import APIURL from './helpers/environment';
 
 class App extends Component<{}, { token: any }> {
