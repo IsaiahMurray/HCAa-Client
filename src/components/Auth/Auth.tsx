@@ -1,67 +1,103 @@
-import React from "react";
+import React, { useState } from "react";
 import Register from "./Register";
 import Login from "./Login";
-import { Grid, Paper, Button } from "@material-ui/core";
+import {Button, Grid, Container} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-type LoginState = {
-  login: boolean;
-}
+const useStyles = makeStyles((theme) => ({
+  root: {
+    justifyContent: "center",
+    height: '90%'
+  },
+  card: {
+    borderRadius: "10%",
+    justifyContent: "center",
+    marginTop: "10vh",
+    boxShadow: "5px 5px 10px grey",
+
+    //! Styling alterations for screen breakpoints
+    //* Mobile
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 0,
+      width: "100vw",
+      height: "100vh",
+      borderRadius: "0%",
+      boxShadow: "0px 0px 0px white"
+    },
+    //* Tablet/Desktop
+    [theme.breakpoints.up("md")]: {
+      width: "30vw",
+      height: "80vh",
+    },
+    //* Desktop and higher
+    [theme.breakpoints.up("lg")]: {
+      width: "30vw",
+      height: "80vh",
+    }
+  },
+  title: {
+    marginBottom: 0,
+    marginTop: '10%',
+  },
+  signupFields: {
+    height: "100%",
+    width: "100%",
+  },
+  button: {
+    marginTop: 0,
+  }
+}));
 
 type AcceptedProps = {
-  updateToken: (token: string) => void;
+  updateToken: (token: string) => void
 }
 
-class Auth extends React.Component<AcceptedProps, LoginState> {
-  constructor(props: AcceptedProps) {
-    super(props);
-    this.state = {
-      login: true,
-    };
-    this.loginToggle = this.loginToggle.bind(this);
-  }
+const Auth = (props: AcceptedProps) => {
+  const classes = useStyles();
+  const [login, setLogin] = useState(true);
 
-  loginToggle = () => {
-    this.setState({
-      ...this.state,
-      login: !this.state.login,
-    });
+  const title = () => {
+    return login ? "Login" : "Signup";
   };
 
-  signupFields = () =>
-    !this.state.login ? (
-      <Grid id="login-signup" item xs={12} sm={6}>
-        <Paper className={""}>
-          <Register updateToken={this.props.updateToken} />
-          <br/>
-        </Paper>
+  const loginToggle = () => {
+    setLogin(!login);
+  };
+
+  const signupFields = () =>
+    !login ? (
+      <Grid id="login-signup" item className={classes.signupFields}>
+        <h2 className={classes.title}>{title()}</h2>
+        <Register updateToken={props.updateToken} />
       </Grid>
     ) : (
-      <Grid id="login-signup" item xs={12} sm={6} className="login-col">
-        <Paper className={""}>
-          <Login updateToken={this.props.updateToken} />
-          <br/>
-        </Paper>
+      <Grid id="login-signup" item className={classes.signupFields}>
+        <h2 className={classes.title}>{title()}</h2>
+        <Login updateToken={props.updateToken} />
       </Grid>
     );
-  render() {
-    return (
-      <div className="auth-container">
-        <h1 id="hca">Hunter's Companion</h1>
-        <Grid
-          id="login-signup-grid"
-          className="auth-grid"
-          container
-          direction="row"
-          justify="space-evenly"
-          alignItems="center"
-        >
-          {this.signupFields()}
-          <Button onClick={this.loginToggle}>TOGGLE</Button>
-          <br />
-        </Grid>
-      </div>
-    );
-  }
-}
 
+  return (
+    <Container id="container" className={classes.card}>
+      <Grid
+        id="login-signup-grid"
+        className={classes.root}
+        container
+        direction="row"
+        justify="space-evenly"
+        alignItems="center"
+      >
+        {signupFields()}
+        <br />
+      </Grid>
+      <Button
+        className={classes.button}
+        id="toggle-button"
+        onClick={loginToggle}
+      >
+        {!login ? "Login here!" : "Register here!"}
+      </Button>
+    </Container>
+  );
+};
 export default Auth;
