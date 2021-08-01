@@ -1,8 +1,6 @@
 import React from "react";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+import {Button, TextField} from "@material-ui/core";
 import APIURL from "../../helpers/environment";
-const log = console.log;
 
 type UserData = {
   email: string;

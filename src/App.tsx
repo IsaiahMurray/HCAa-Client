@@ -10,7 +10,7 @@ type AppState = {
   token: null | string;
 }
 
-class App extends Component<{}, { token: string | null }> {
+class App extends Component<{}, AppState> {
   constructor(props: any) {
     super(props);
     this.updateToken = this.updateToken.bind(this);
