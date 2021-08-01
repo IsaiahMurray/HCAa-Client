@@ -11,7 +11,7 @@ type UserData = {
 
 type AcceptedProps = {
   updateToken: (token: string) => void;
-  loginToggle: (event: any) => void;
+  
 }
 
 class Signup extends React.Component<AcceptedProps, UserData> {
@@ -23,9 +23,10 @@ class Signup extends React.Component<AcceptedProps, UserData> {
     };
   }
 
-  handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    fetch(`${APIURL}/user/create`, {
+
+    const res = await fetch(`${APIURL}/user/create`, {
       method: "POST",
       body: JSON.stringify({
         email: this.state.email,
@@ -35,12 +36,9 @@ class Signup extends React.Component<AcceptedProps, UserData> {
         "Content-Type": "application/json",
       }),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        this.props.updateToken(data.sessionToken);
-        log("user has been created!");
-        alert("You've successfully signed up!");
-      });
+    const data = await res.json();
+    this.props.updateToken(data.sessionToken);
+    console.log("User has successfully been created! Woohoo!");
   };
   render() {
     return (
@@ -80,10 +78,6 @@ class Signup extends React.Component<AcceptedProps, UserData> {
           <Button id="login-signup-button" type="submit">
             Sign Up
           </Button>
-          <br />
-          <br/>
-          <Button onClick={this.props.loginToggle}>Login here!</Button>
-          <br/>
         </form>
       </div>
     );
