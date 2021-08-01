@@ -19,6 +19,14 @@ class App extends Component<{}, AppState> {
     this.state = { token: null };
   }
 
+  componentDidMount(){
+    if(localStorage.getItem("token")){
+      this.setState({
+        token: localStorage.getItem("token")
+      })
+    }
+  }
+
   updateToken(userToken: string) {
     this.setState({ token: userToken });
     localStorage.setItem("token", userToken);
@@ -34,11 +42,9 @@ class App extends Component<{}, AppState> {
   }
 
   render() {
-    const isLoggedIn = this.state.token;
-
     let view;
 
-    if (isLoggedIn) {
+    if (this.state.token) {
       view = (
         <Display
           getToken={this.getToken}
