@@ -1,5 +1,5 @@
 import React from "react";
-import Signup from "./Register";
+import Register from "./Register";
 import Login from "./Login";
 import { Grid, Paper, Button } from "@material-ui/core";
 
@@ -31,7 +31,7 @@ class Auth extends React.Component<AcceptedProps, LoginState> {
     !this.state.login ? (
       <Grid id="login-signup" item xs={12} sm={6}>
         <Paper className={""}>
-          <Signup updateToken={this.props.updateToken} />
+          <Register updateToken={this.props.updateToken} />
           <br/>
         </Paper>
       </Grid>

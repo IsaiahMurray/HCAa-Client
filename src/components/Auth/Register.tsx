@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React,{ useState } from "react";
 import { Alert } from "@material-ui/lab";
-import {Snackbar, Button, TextField} from "@material-ui/core/";
+import {Snackbar, Button, TextField} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -8,28 +8,28 @@ const useStyles = makeStyles((theme) => ({
     width: "90%",
     height: "88%",
     margin: "auto",
-    marginTop: "3%",
+    marginTop: '3%'
   },
-  form: {
-    height: "90%",
-    paddingTop: "5%",
+  form:{
+    height: '90%',
+    paddingTop: '5%'
   },
   button: {
-    marginTop: "10%",
+    marginTop: '10%'
   },
 }));
 
 type AcceptedProps = {
-  updateToken: (token: string) => void
+  updateToken: (token: string ) => void
 }
 
-const Login = (props: AcceptedProps) => {
+const Register = (props: AcceptedProps) => {
   const classes = useStyles();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [open, setOpen] = useState(false);
-  const [alert, setAlert] = useState("");
+  const [errMessage, setErrMessage] = useState("");
 
   const handleOpen = () => {
     setOpen(true);
@@ -43,44 +43,35 @@ const Login = (props: AcceptedProps) => {
     setOpen(false);
   };
 
-  const setAlertMessage = (err: number) => {
-    if (err === 401) {
-      setAlert("Login failed. Incorrect password.");
+  const setError = (err: Number) => {
+    if (err === 409) {
+      setErrMessage("Email in use. Try logging in.");
       setOpen(true);
-    } else if (err === 404) {
-      setAlert("Not found. User does not exist.");
-      setOpen(true);
-    } else {
-      setAlert("Something went wrong...");
+    } else if (err === 500) {
+      setErrMessage("Something went wrog...");
       setOpen(true);
     }
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Login button hit");
+    console.log("Signup button hit");
     try {
-      let res = await fetch(`http://localhost:3000/user/login`, {
-        // mode: "no-cors",
+      let res = await fetch(`http://localhost:3000/user/register`, {
         method: "POST",
-        body: JSON.stringify({ email: email, password: password }),
+        body: JSON.stringify({ email: email, name: name, password: password }),
         headers: new Headers({
           "Content-Type": "application/json",
         }),
       });
 
-      if (res.status === 401) {
-        setAlertMessage(401);
-        throw new Error('401');
-      }
-
-      if (res.status === 404) {
-        setAlertMessage(404);
-        throw new Error('404');
+      if (res.status === 409) {
+        setError(409);
+        throw new Error('409');
       }
 
       if (res.status === 500) {
-        setAlertMessage(500);
+        setError(500);
         throw new Error('500');
       }
 
@@ -90,24 +81,33 @@ const Login = (props: AcceptedProps) => {
       console.log(`Message: ${data.message}`);
       console.log(`User: ${data.user}`);
 
-      props.updateToken(data.sessionToken);
-    } catch (err) {
+      props.updateToken(data.token);
+      window.alert("You're signed up!");
+    } catch (error) {
+      console.error("THIS IS THE ERROR", error);
       handleOpen();
-      console.log(err);
+      //window.alert("That email is already in use.. Try logging in!");
     }
   };
+
   return (
     <div className={classes.root}>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
-          {alert}
+          {errMessage}
         </Alert>
       </Snackbar>
-      <form
-        className={classes.form}
-        id="login-signup-form"
-        onSubmit={handleSubmit}
-      >
+      <form className={classes.form} id="login-signup-form" onSubmit={handleSubmit}>
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          id="name"
+          label="Name"
+          onChange={(e) => setName(e.target.value)}
+          name="name"
+          value={name}
+        />
         <br />
         <TextField
           variant="outlined"
@@ -115,7 +115,7 @@ const Login = (props: AcceptedProps) => {
           required
           id="email"
           label="Email"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
           name="email"
           value={email}
           autoFocus
@@ -128,7 +128,7 @@ const Login = (props: AcceptedProps) => {
           label="Password"
           type="password"
           id="password"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           name="password"
           value={password}
         />
@@ -140,11 +140,11 @@ const Login = (props: AcceptedProps) => {
           variant="contained"
           color="primary"
         >
-          Log In
+          Sign Up
         </Button>
       </form>
     </div>
   );
 };
 
-export default Login;
+export default Register;
