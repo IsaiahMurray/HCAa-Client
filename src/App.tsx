@@ -6,7 +6,11 @@ import Display from "./components/Site/Display";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import APIURL from './helpers/environment';
 
-class App extends Component<{}, { token: any }> {
+type AppState = {
+  token: null | string;
+}
+
+class App extends Component<{}, { token: string | null }> {
   constructor(props: any) {
     super(props);
     this.updateToken = this.updateToken.bind(this);
@@ -17,10 +21,12 @@ class App extends Component<{}, { token: any }> {
 
   updateToken(userToken: string) {
     this.setState({ token: userToken });
+    localStorage.setItem("token", userToken);
   }
 
   deleteToken() {
     this.setState({ token: null });
+    localStorage.clear()
   }
 
   getToken() {

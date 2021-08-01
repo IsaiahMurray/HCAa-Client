@@ -14,7 +14,7 @@ interface UserData {
 
 interface AcceptedProps {
   updateToken: (token: string) => void;
-  loginToggle: (event: any) => void;
+ 
 }
 
 class Login extends React.Component<AcceptedProps, UserData> {
@@ -26,7 +26,7 @@ class Login extends React.Component<AcceptedProps, UserData> {
     };
   }
 
-  handleSubmit = (event: any) => {
+  handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     log("Submitted form");
     fetch(`${APIURL}/user/login`, {
@@ -90,7 +90,7 @@ class Login extends React.Component<AcceptedProps, UserData> {
           </Button>
           <br />
           <br/>
-          <Button onClick={this.props.loginToggle}>Signup here!</Button>
+          {/* <Button onClick={this.props.loginToggle}>Signup here!</Button> */}
           <br/>
         </form>
       </div>

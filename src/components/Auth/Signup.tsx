@@ -4,12 +4,12 @@ import Button from "@material-ui/core/Button";
 import APIURL from "../../helpers/environment";
 const log = console.log;
 
-interface UserData {
+type UserData = {
   email: string;
   password: string;
 }
 
-interface AcceptedProps {
+type AcceptedProps = {
   updateToken: (token: string) => void;
   loginToggle: (event: any) => void;
 }
@@ -23,7 +23,7 @@ class Signup extends React.Component<AcceptedProps, UserData> {
     };
   }
 
-  handleSubmit = (event: any) => {
+  handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     fetch(`${APIURL}/user/create`, {
       method: "POST",

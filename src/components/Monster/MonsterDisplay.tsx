@@ -46,17 +46,28 @@ class Monsters extends Component<{}, Data> {
       .catch((err) => console.log(err));
   }
 
-  setMonsterArray(monsterResult: any) {
+  setMonsterArray(monsterResult: Monster[]) {
     this.setState({ monsterList: monsterResult });
   }
 
-  openModal(monster: Monster) {
+  openModal(monster: Monster, id: number) {
+    fetch(`https://mhw-db.com/monsters/${id}`)
+    .then(res => res.json())
+    .then(data => console.log(data) )
     this.setState({ modalIsOpen: true });
     this.setState({ activeMonster: monster });
   }
 
   closeModal() {
     this.setState({ modalIsOpen: false });
+  }
+
+  getMonsterRewards(id: number){
+    fetch(`https://mhw-db.com/monsters/${id}`)
+    .then(res => res.json())
+    .then(data => {
+      
+    })
   }
 
   render() {
@@ -69,7 +80,7 @@ class Monsters extends Component<{}, Data> {
             <Paper id="monster-paper">
               <h2>{monster.name}</h2>
               <p>{monster.description}</p>
-              <button onClick={() => this.openModal(monster)}>
+              <button onClick={() => this.openModal(monster, monster.id)}>
                 View Details
               </button>
             </Paper>
@@ -140,7 +151,7 @@ class Monsters extends Component<{}, Data> {
                 return (
                   <ul>
                     <li>
-                      {weakness.element} ={">"} {weakness.stars}/5
+                      {weakness.element}: {weakness.stars}/5
                     </li>
                   </ul>
                 );

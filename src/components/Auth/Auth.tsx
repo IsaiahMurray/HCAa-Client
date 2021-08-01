@@ -1,17 +1,17 @@
-import React from "react";
+import React, {ChangeEventHandler, ChangeEvent} from "react";
 import Signup from "./Signup";
 import Login from "./Login";
-import { Grid, Paper } from "@material-ui/core/";
+import { Grid, Paper, Button } from "@material-ui/core/";
 
-interface LoginCheck {
+type LoginState = {
   login: boolean;
 }
 
-interface AcceptedProps {
+type AcceptedProps = {
   updateToken: (token: string) => void;
 }
 
-class Auth extends React.Component<AcceptedProps, LoginCheck> {
+class Auth extends React.Component<AcceptedProps, LoginState> {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {
@@ -20,8 +20,8 @@ class Auth extends React.Component<AcceptedProps, LoginCheck> {
     this.loginToggle = this.loginToggle.bind(this);
   }
 
-  loginToggle = (event: any) => {
-    event.preventDefault();
+  loginToggle = (event: React.MouseEventHandler<HTMLAnchorElement>) => {
+    //event.preventDefault();
 
     this.setState({
       ...this.state,
@@ -40,7 +40,7 @@ class Auth extends React.Component<AcceptedProps, LoginCheck> {
     ) : (
       <Grid id="login-signup" item xs={12} sm={6} className="login-col">
         <Paper className={""}>
-          <Login loginToggle={this.loginToggle} updateToken={this.props.updateToken} />
+          <Login updateToken={this.props.updateToken} />
           <br/>
         </Paper>
       </Grid>
@@ -59,6 +59,7 @@ class Auth extends React.Component<AcceptedProps, LoginCheck> {
         >
           {this.signupFields()}
           <br />
+          {/* <Button onClick={this.loginToggle}></Button> */}
         </Grid>
       </div>
     );
