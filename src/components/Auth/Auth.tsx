@@ -1,5 +1,5 @@
 import React from "react";
-import Signup from "./Signup";
+import Signup from "./Register";
 import Login from "./Login";
 import { Grid, Paper, Button } from "@material-ui/core";
 
