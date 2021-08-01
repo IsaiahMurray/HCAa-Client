@@ -14,11 +14,11 @@ import {
   Form,
 } from "react-bootstrap";
 
-interface AcceptedProps {
-  getToken: any;
+type AcceptedProps = {
+  token: string | null
 }
 
-class Sidebar extends Component<AcceptedProps> {
+class Sidebar extends Component<AcceptedProps, {}> {
   constructor(props: AcceptedProps) {
     super(props);
     this.state = {};
@@ -60,7 +60,7 @@ class Sidebar extends Component<AcceptedProps> {
           <div className="sidebar-route">
             <Switch>
               <Route exact path="/lists">
-                <Lists getToken={this.props.getToken} />
+                <Lists getToken={this.props.token} />
               </Route>
               <Route exact path="/monster">
                 <Monsters />
@@ -69,7 +69,7 @@ class Sidebar extends Component<AcceptedProps> {
                 <Item />
               </Route>
               <Route exact path="/create-list">
-                <CreateList getToken={this.props.getToken} />
+                <CreateList getToken={this.props.token} />
               </Route>
             </Switch>
           </div>

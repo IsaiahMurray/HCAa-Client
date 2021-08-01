@@ -15,7 +15,6 @@ class App extends Component<{}, AppState> {
     super(props);
     this.updateToken = this.updateToken.bind(this);
     this.deleteToken = this.deleteToken.bind(this);
-    this.getToken = this.getToken.bind(this);
     this.state = { token: null };
   }
 
@@ -37,9 +36,7 @@ class App extends Component<{}, AppState> {
     localStorage.clear()
   }
 
-  getToken() {
-    return this.state.token;
-  }
+
 
   render() {
     let view;
@@ -47,9 +44,8 @@ class App extends Component<{}, AppState> {
     if (this.state.token) {
       view = (
         <Display
-          getToken={this.getToken}
+          token={this.state.token}
           deleteToken={this.deleteToken}
-          updateToken={this.updateToken}
         />
       );
     } else {

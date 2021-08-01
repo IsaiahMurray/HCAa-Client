@@ -3,14 +3,19 @@ import Sidebar from "./Sidebar";
 import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "../Site/Navbar";
 
-class Display extends Component<{ deleteToken: any; getToken: any; updateToken: any },{}> {
+type AcceptedProps = {
+  token: string | null,
+  deleteToken: () => void
+}
+
+class Display extends Component<AcceptedProps,{}> {
   
   render() {
     return (
       <div>
         <Navbar deleteToken={this.props.deleteToken}/>
         <Router>
-          <Sidebar getToken={this.props.getToken} />
+          <Sidebar token={this.props.token} />
         </Router>
       </div>
     );
